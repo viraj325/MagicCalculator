@@ -6,18 +6,26 @@
 //
 
 import SwiftUI
-import Charts
 
 struct ContentView: View {
+    @State private var selectedTab = "One"
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
+        TabView(selection: $selectedTab) {
+            Text("Compound Interest")
+                .tabItem {
+                    Text("Compound Interest")
+                        .foregroundColor(.green)
+                }
+                .tag(0)
             
-            Text("Hello, world!")
+            Text("Options Profit")
+                .tabItem {
+                    Text("Options Profit")
+                        .foregroundColor(.green)
+                }
+                .tag(1)
         }
-        .padding()
     }
 }
 
