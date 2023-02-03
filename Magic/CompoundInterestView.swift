@@ -32,7 +32,7 @@ struct CompoundInterestView: View {
             //need compound frequency
             Button(action: {
                 print("Button Clicked")
-                functions.calculateCompoundInterest()
+                functions.calculateTotal()
                 functions.printForTesting()
             }) {
                 Text("Calculate")
@@ -50,12 +50,12 @@ struct CompoundInterestView_Previews: PreviewProvider {
 
 
 class CompoundInterestFunctions: ObservableObject {
-    enum Frequency : Int {
-        case annually = 1
-        case semiAnnually = 2
-        case quarterly = 4
-        case monthly = 12
-        case daily = 365
+    enum Frequency : Double {
+        case annually = 1.0
+        case semiAnnually = 2.0
+        case quarterly = 4.0
+        case monthly = 12.0
+        case daily = 365.0
     }
     
     // Required Variables
@@ -70,27 +70,42 @@ class CompoundInterestFunctions: ObservableObject {
     
     // Conditional Variables
     @Published var totalContributions = [Int]()
+    @Published var test = [Double]()
     @Published var futureContributions = [FutureValueObject]()
     @Published var currentContribution = 0
     @Published var showError = false
     
-    func calculateCompoundInterest() {
+    func calculateTotal() {
         // Total Contributions
-        for i in stride(from: 1, to: Int(lengthOfTimeInYears)! + 1, by: 1) {
+        for i in stride(from: 0, to: Int(lengthOfTimeInYears)! + 1, by: 1) {
             print("Length of Time Count: \(i)")
             if currentContribution == 0 {
                 currentContribution = Int(initialAmount)!
                 totalContributions.append(currentContribution)
+                test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: Double(estimatedVarianceRate)!, compoundRate: compoundFrequency.rawValue, years: Double(i)))
             } else {
                 currentContribution = currentContribution + (Int(monthlyContributions)! * 12)
                 totalContributions.append(currentContribution)
+                test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: Double(estimatedVarianceRate)!, compoundRate: compoundFrequency.rawValue, years: Double(i)))
             }
         }
+    }
+    
+    func calculateCompoundInterest(principal: Double, contributions: Double, interestRate: Double, compoundRate: Double, years: Double) -> Double {
+        let totalRateCalculation = interestRate/compoundRate
+        let compoundInterestFormula = principal * (1 + pow(totalRateCalculation, (compoundRate * years)))
+        let monthlyContributionFormula = (contributions * (1 + pow(totalRateCalculation, (compoundRate * years))) - 1)/(totalRateCalculation)
+        let total = compoundInterestFormula + monthlyContributionFormula
+        return Double(compoundInterestFormula)
     }
     
     func printForTesting() {
         for i in totalContributions {
             print("Total Contributions: \(i)")
+        }
+        
+        for a in test {
+            print("Future Contributions: \(a)")
         }
     }
 }
