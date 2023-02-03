@@ -9,8 +9,36 @@ import SwiftUI
 import Charts
 
 struct CompoundInterestView: View {
+    @ObservedObject var functions = CompoundInterestFunctions()
+
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("Hello, World!")
+            TextField("Initial Investment", text: $functions.initialAmount)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            TextField("Monthly Contribution", text: $functions.monthlyContributions)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            TextField("Length of Time in Years", text: $functions.lengthOfTimeInYears)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            TextField("Estimated Interest Rate", text: $functions.estimatedVarianceRate)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            TextField("Interest rate variance range", text: $functions.interestRateVarianceRange)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            //need compound frequency
+            Button(action: {
+                print("Button Clicked")
+                functions.calculateCompoundInterest()
+                functions.printForTesting()
+            }) {
+                Text("Calculate")
+            }
+        }
+        .padding()
     }
 }
 
@@ -31,13 +59,13 @@ class CompoundInterestFunctions: ObservableObject {
     }
     
     // Required Variables
-    @Published var initialAmount = 0
-    @Published var lengthOfTimeInYears = 1
-    @Published var estimatedVarianceRate = 0.0
+    @Published var initialAmount = "0"
+    @Published var lengthOfTimeInYears = "1"
+    @Published var estimatedVarianceRate = "0.0"
     
     // Optional Variables
-    @Published var monthlyContributions = 0
-    @Published var interestRateVarianceRange = 0.0
+    @Published var monthlyContributions = "0"
+    @Published var interestRateVarianceRange = "0.0"
     @Published var compoundFrequency = Frequency.annually
     
     // Conditional Variables
@@ -48,15 +76,21 @@ class CompoundInterestFunctions: ObservableObject {
     
     func calculateCompoundInterest() {
         // Total Contributions
-        for i in stride(from: 1, to: lengthOfTimeInYears, by: 1) {
+        for i in stride(from: 1, to: Int(lengthOfTimeInYears)! + 1, by: 1) {
             print("Length of Time Count: \(i)")
             if currentContribution == 0 {
-                currentContribution = initialAmount
+                currentContribution = Int(initialAmount)!
                 totalContributions.append(currentContribution)
             } else {
-                currentContribution = currentContribution + (monthlyContributions * 12)
+                currentContribution = currentContribution + (Int(monthlyContributions)! * 12)
                 totalContributions.append(currentContribution)
             }
+        }
+    }
+    
+    func printForTesting() {
+        for i in totalContributions {
+            print("Total Contributions: \(i)")
         }
     }
 }

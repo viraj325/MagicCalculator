@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Text("Compound Interest")
+            CompoundInterestView()
                 .tabItem {
                     Text("Compound Interest")
                         .foregroundColor(.green)

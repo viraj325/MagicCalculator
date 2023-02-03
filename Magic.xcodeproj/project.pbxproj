@@ -46,6 +46,7 @@
 		C0459B4A293DA204001CAF37 /* MagicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicUITests.swift; sourceTree = "<group>"; };
 		C0459B4C293DA204001CAF37 /* MagicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C098B9D12988913500AC82EF /* CompoundInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundInterestView.swift; sourceTree = "<group>"; };
+		C098BA09298A070F00AC82EF /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 				C0459B33293DA204001CAF37 /* Assets.xcassets */,
 				C0459B35293DA204001CAF37 /* Preview Content */,
 				C098B9D12988913500AC82EF /* CompoundInterestView.swift */,
+				C098BA09298A070F00AC82EF /* Documentation.md */,
 			);
 			path = Magic;
 			sourceTree = "<group>";
