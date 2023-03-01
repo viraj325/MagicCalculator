@@ -23,10 +23,10 @@ struct CompoundInterestView: View {
             TextField("Length of Time in Years", text: $functions.lengthOfTimeInYears)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("Estimated Interest Rate", text: $functions.estimatedVarianceRate)
+            TextField("Estimated Interest Rate", text: $functions.estimatedVarianceRate) // convert this to decimal so ex) 20.0 -> .2
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("Interest rate variance range", text: $functions.interestRateVarianceRange)
+            TextField("Interest rate variance range", text: $functions.interestRateVarianceRange) // convert this to decimal so ex) 20.0 -> .2
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             //need compound frequency
@@ -82,13 +82,20 @@ class CompoundInterestFunctions: ObservableObject {
             if currentContribution == 0 {
                 currentContribution = Int(initialAmount)!
                 totalContributions.append(currentContribution)
-                test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: Double(estimatedVarianceRate)!, compoundRate: compoundFrequency.rawValue, years: Double(i)))
+                test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: convertRateFromWholeToDouble(rate: estimatedVarianceRate), compoundRate: compoundFrequency.rawValue, years: Double(i)))
             } else {
                 currentContribution = currentContribution + (Int(monthlyContributions)! * 12)
                 totalContributions.append(currentContribution)
-                test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: Double(estimatedVarianceRate)!, compoundRate: compoundFrequency.rawValue, years: Double(i)))
+                test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: convertRateFromWholeToDouble(rate: estimatedVarianceRate), compoundRate: compoundFrequency.rawValue, years: Double(i)))
             }
         }
+    }
+    
+    func convertRateFromWholeToDouble(rate: String) -> Double {
+        let tempConvertedValue = Double(rate)!
+        let tempDecimalValue = tempConvertedValue / 100.0
+        print(tempDecimalValue)
+        return tempDecimalValue
     }
     
     func calculateCompoundInterest(principal: Double, contributions: Double, interestRate: Double, compoundRate: Double, years: Double) -> Double {
