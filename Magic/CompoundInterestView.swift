@@ -99,9 +99,9 @@ class CompoundInterestFunctions: ObservableObject {
     }
     
     func calculateCompoundInterest(principal: Double, contributions: Double, interestRate: Double, compoundRate: Double, years: Double) -> Double {
-        let totalRateCalculation = interestRate/compoundRate
+        let totalRateCalculation = interestRate / compoundRate
         let compoundInterestFormula = principal * (1 + pow(totalRateCalculation, (compoundRate * years)))
-        let monthlyContributionFormula = (contributions * (1 + pow(totalRateCalculation, (compoundRate * years))) - 1)/(totalRateCalculation)
+        let monthlyContributionFormula = (contributions * (1 + pow(totalRateCalculation, (compoundRate * years))) - 1) / (totalRateCalculation)
         let total = compoundInterestFormula + monthlyContributionFormula
         return Double(compoundInterestFormula)
     }
