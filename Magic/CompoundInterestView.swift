@@ -39,9 +39,9 @@ struct CompoundInterestView: View {
             }
         }
         .padding()
-        .onAppear {
+        /*.onAppear {
             URLFunctions.getUnemploymentRate()
-        }
+        }*/
     }
 }
 
