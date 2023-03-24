@@ -14,6 +14,7 @@
 		C0459B41293DA204001CAF37 /* MagicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0459B40293DA204001CAF37 /* MagicTests.swift */; };
 		C0459B4B293DA204001CAF37 /* MagicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0459B4A293DA204001CAF37 /* MagicUITests.swift */; };
 		C0459B4D293DA204001CAF37 /* MagicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0459B4C293DA204001CAF37 /* MagicUITestsLaunchTests.swift */; };
+		C09001BA29CDFD4F00E61F39 /* URLFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09001B929CDFD4F00E61F39 /* URLFunctions.swift */; };
 		C098B9D22988913500AC82EF /* CompoundInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098B9D12988913500AC82EF /* CompoundInterestView.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		C0459B46293DA204001CAF37 /* MagicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0459B4A293DA204001CAF37 /* MagicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicUITests.swift; sourceTree = "<group>"; };
 		C0459B4C293DA204001CAF37 /* MagicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C09001B929CDFD4F00E61F39 /* URLFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFunctions.swift; sourceTree = "<group>"; };
 		C098B9D12988913500AC82EF /* CompoundInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundInterestView.swift; sourceTree = "<group>"; };
 		C098BA09298A070F00AC82EF /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 				C0459B35293DA204001CAF37 /* Preview Content */,
 				C098B9D12988913500AC82EF /* CompoundInterestView.swift */,
 				C098BA09298A070F00AC82EF /* Documentation.md */,
+				C09001B929CDFD4F00E61F39 /* URLFunctions.swift */,
 			);
 			path = Magic;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C098B9D22988913500AC82EF /* CompoundInterestView.swift in Sources */,
+				C09001BA29CDFD4F00E61F39 /* URLFunctions.swift in Sources */,
 				C0459B32293DA203001CAF37 /* ContentView.swift in Sources */,
 				C0459B30293DA203001CAF37 /* MagicApp.swift in Sources */,
 			);
