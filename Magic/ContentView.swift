@@ -19,12 +19,19 @@ struct ContentView: View {
                 }
                 .tag(0)
             
+            PaycheckCalculatorView()
+                .tabItem {
+                    Text("PaycheckCalculatorView")
+                        .foregroundColor(.green)
+                }
+                .tag(1)
+            
             Text("Options Profit")
                 .tabItem {
                     Text("Options Profit")
                         .foregroundColor(.green)
                 }
-                .tag(1)
+                .tag(2)
         }
     }
 }
