@@ -21,7 +21,7 @@ struct ContentView: View {
             
             PaycheckCalculatorView()
                 .tabItem {
-                    Text("PaycheckCalculatorView")
+                    Text("Paycheck Calculator")
                         .foregroundColor(.green)
                 }
                 .tag(1)
