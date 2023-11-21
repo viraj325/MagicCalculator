@@ -26,12 +26,19 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            Text("Options Profit")
+            OptionsCalculatorView()
                 .tabItem {
                     Text("Options Profit")
                         .foregroundColor(.green)
                 }
                 .tag(2)
+            
+            DilutionCalculatorView()
+                .tabItem {
+                    Text("Dilution Equity")
+                        .foregroundColor(.green)
+                }
+                .tag(3)
         }
     }
 }

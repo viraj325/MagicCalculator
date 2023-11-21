@@ -9,12 +9,12 @@ import SwiftUI
 import Charts
 
 struct CompoundInterestView: View {
-    @ObservedObject var functions = CompoundInterestFunctions()
+    //@ObservedObject var functions = CompoundInterestFunctions()
+    @ObservedObject var functionsNew = CompoundInterestFunctionNew()
 
     var body: some View {
         VStack {
-            Text("Hello, World!")
-            TextField("Initial Investment", text: $functions.initialAmount)
+            /*TextField("Initial Investment", text: $functions.initialAmount)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             TextField("Monthly Contribution", text: $functions.monthlyContributions)
@@ -36,9 +36,12 @@ struct CompoundInterestView: View {
                 functions.printForTesting()
             }) {
                 Text("Calculate")
-            }
+            }*/
         }
         .padding()
+        .onAppear {
+            functionsNew.calculate()
+        }
         /*.onAppear {
             URLFunctions.getUnemploymentRate()
         }*/
@@ -51,8 +54,33 @@ struct CompoundInterestView_Previews: PreviewProvider {
     }
 }
 
+class CompoundInterestFunctionNew: ObservableObject {
+    func compoundInterestWithMonthlyContributions(principal: Double, annualInterestRate: Double, monthlyContributions: Double, numberOfMonths: Int) -> Double {
+        let monthlyInterestRate = annualInterestRate / 12 / 100
+        var totalAmount = principal
+        
+        for _ in 1...numberOfMonths {
+            totalAmount += monthlyContributions
+            totalAmount *= (1 + monthlyInterestRate)
+        }
+        
+        return totalAmount - principal
+    }
+    
+    // Example usage:
+    func calculate() {
+        let principalAmount = 100.0
+        let annualRate = 5.0
+        let monthlyContribution = 10.0
+        let months = 12
+        
+        let interest = compoundInterestWithMonthlyContributions(principal: principalAmount, annualInterestRate: annualRate, monthlyContributions: monthlyContribution, numberOfMonths: months)
+        
+        print("Total Interest: \(interest)")
+    }
+}
 
-class CompoundInterestFunctions: ObservableObject {
+/* class CompoundInterestFunctions: ObservableObject {
     enum Frequency : Double {
         case annually = 1.0
         case semiAnnually = 2.0
@@ -85,7 +113,8 @@ class CompoundInterestFunctions: ObservableObject {
             if currentContribution == 0 {
                 currentContribution = Int(initialAmount)!
                 totalContributions.append(currentContribution)
-                test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: convertRateFromWholeToDouble(rate: estimatedVarianceRate), compoundRate: compoundFrequency.rawValue, years: Double(i)))
+                test.append(Double(currentContribution))
+                //test.append(calculateCompoundInterest(principal: Double(currentContribution), contributions: Double(monthlyContributions)!, interestRate: convertRateFromWholeToDouble(rate: estimatedVarianceRate), compoundRate: compoundFrequency.rawValue, years: Double(i)))
             } else {
                 currentContribution = currentContribution + (Int(monthlyContributions)! * 12)
                 totalContributions.append(currentContribution)
@@ -131,4 +160,4 @@ class FutureValueObject: Identifiable {
         self.currentVariance = currentVariance
         self.higherVariance = higherVariance
     }
-}
+} */
